@@ -15,9 +15,9 @@ import static org.junit.Assert.*;
  *
  * @author Bruno
  */
-public class DigitaVerificadorCPF {
+public class DigitoVerificadorCPFTest {
     
-    public DigitaVerificadorCPF() {
+    public DigitoVerificadorCPFTest() {
     }
     
     @BeforeClass
