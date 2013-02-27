@@ -18,7 +18,6 @@
         <hibernate.core.version>4.1.9.Final</hibernate.core.version>
         <hibernate.ehcache.version>${hibernate.core.version}</hibernate.ehcache.version>
         <hibernate.jpamodelgen.version>1.2.0.Final</hibernate.jpamodelgen.version>
-        <netbeans.hint.deploy.server>Tomcat</netbeans.hint.deploy.server>
     </properties>
 
     <dependencies>
@@ -60,7 +59,23 @@
             <artifactId>icefaces</artifactId>
             <version>${icefaces.version}</version>
         </dependency>
-
+         <dependency>
+            <groupId>info.cukes</groupId>
+            <artifactId>cucumber-java</artifactId>
+            <version>1.1.1</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>info.cukes</groupId>
+            <artifactId>cucumber-junit</artifactId>
+            <version>1.1.1</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-java</artifactId>
+            <version>2.30.0</version>
+        </dependency>
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
@@ -92,8 +107,9 @@
             <version>1.6.1</version>
             <type>jar</type>
         </dependency>
-        <!-- Dependências do Hibernate JPA -->
-
+        <!-- Dependências do Hibernate JPA -->     
+       
+        
     </dependencies>
 
     <build>
@@ -168,6 +184,55 @@
                                 </artifactItem>
                             </artifactItems>
                         </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.tomcat.maven</groupId>
+                <artifactId>tomcat7-maven-plugin</artifactId>
+                <version>2.0</version>
+                <configuration>
+                    <server>Apache Tomcat 7.0.34</server>
+                    <url>http://localhost:8080/manager/text</url>                    
+                    <update>true</update>
+                    <port>8080</port>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>tomcat-deploy</id>
+                        <goals>
+                            <goal>deploy</goal>
+                        </goals>
+                        <phase>pre-integration-test</phase>
+                        <configuration>
+                            <fork>true</fork>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>tomcat-shutdown</id>
+                        <goals>
+                            <goal>shutdown</goal>
+                        </goals>
+                        <phase>post-integration-test</phase>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.12.4</version>
+                <configuration>
+                    <skipTests>false</skipTests>
+                </configuration>
+            </plugin>
+            <plugin>
+                <artifactId>maven-failsafe-plugin</artifactId>
+                <version>2.12.4</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>verify</goal>
+                            <goal>integration-test</goal>
+                        </goals>
                     </execution>
                 </executions>
             </plugin>
