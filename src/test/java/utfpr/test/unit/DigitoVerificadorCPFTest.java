@@ -6,6 +6,7 @@ package utfpr.test.unit;
 
 import org.junit.After;
 import org.junit.AfterClass;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -17,27 +18,14 @@ import static org.junit.Assert.*;
  */
 public class DigitoVerificadorCPFTest {
     
-    public DigitoVerificadorCPFTest() {
-    }
-    
-    @BeforeClass
-    public static void setUpClass() {
-    }
-    
-    @AfterClass
-    public static void tearDownClass() {
-    }
-    
-    @Before
-    public void setUp() {
-    }
-    
-    @After
-    public void tearDown() {
-    }
-    // TODO add test methods here.
-    // The methods must be annotated with annotation @Test. For example:
-    //
-    // @Test
-    // public void hello() {}
+   @Test
+   public void testsetValor(){
+       String valor = "888888888";
+       String resultado = "999999999";
+       Assert.assertTrue(valor.length() <= resultado.length());
+   }
+   
+   @Test
+   public void testcalculaDV(){
+   }
 }
